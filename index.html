@@ -1,22 +1,31 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Rock Paper Scissors Game</h1>
-        <div class="scoreboard">
-            <div class="p-score">Player Score: 0</div>
-            <div class="c-score">Computer Score: 0</div>
+        <div class="user-info">
+            <label for="username">Enter your name:</label>
+            <input type="text" id="username">
+            <button id="start-game">Start Game</button>
         </div>
-        <div class="choices">
-            <button onclick="throwRock()">Rock</button>
-            <button onclick="throwPaper()">Paper</button>
-            <button onclick="throwScissors()">Scissors</button>
+        <div class="scoreboard" style="display: none;">
+            <div class="player-score">Player Score: <span class="p-score">0</span></div>
+            <div class="computer-score">Computer Score: <span class="c-score">0</span></div>
+            <div class="rounds">Round 1 of 5</div>
+        </div>
+        <div class="choices" style="display: none;">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
         </div>
         <div class="result"></div>
-        <button onclick="resetGame()">Reset Game</button>
+        <button class="reset-button" onclick="resetGame()" style="display: none;">Reset Game</button>
     </div>
     <script src="script.js"></script>
 
