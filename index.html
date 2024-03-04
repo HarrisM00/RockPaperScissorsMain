@@ -4,13 +4,21 @@
 
 </head>
 <body>
-    <center>
-        <h1>Rock Paper Scissors</h1></center>
+    <div class="container">
+        <h1>Rock Paper Scissors Game</h1>
+        <div class="scoreboard">
+            <div class="p-score">Player Score: 0</div>
+            <div class="c-score">Computer Score: 0</div>
+        </div>
+        <div class="choices">
+            <button onclick="throwRock()">Rock</button>
+            <button onclick="throwPaper()">Paper</button>
+            <button onclick="throwScissors()">Scissors</button>
+        </div>
+        <div class="result"></div>
+        <button onclick="resetGame()">Reset Game</button>
+    </div>
     <script src="script.js"></script>
-    <center>
-<button>Rock</button>
-<button>Paper</button>
-<button>Scissors</button>
-</center>
+
 </body>
 </html>
