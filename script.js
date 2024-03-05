@@ -50,7 +50,86 @@ document.addEventListener("DOMContentLoaded", function() {
         throwChoice('scissors');
     });
 
-    // Rest of the JavaScript code remains the same
+    // Function to play a round of the game
+    function playRound(playerChoice) {
+        // Get computer's choice
+        const computerChoice = computerSelection();
+        // Determine the winner of the round
+        let roundResult = "";
+        if (playerChoice === computerChoice) {
+            roundResult = "It's a tie!";
+        } else if (
+            (playerChoice === 'rock' && computerChoice === 'scissors') ||
+            (playerChoice === 'paper' && computerChoice === 'rock') ||
+            (playerChoice === 'scissors' && computerChoice === 'paper')
+        ) {
+            roundResult = 'You win!';
+            playerScore++;
+        } else {
+            roundResult = 'Computer wins!';
+            computerScore++;
+        }
+        // Update the scores and display the result
+        updateScores();
+        displayResult(roundResult);
+        // Increment roundsPlayed and check if the game is over
+        roundsPlayed++;
+        if (roundsPlayed === totalRounds) {
+            endGame();
+        } else {
+            // Update the round information
+            document.querySelector('.rounds').textContent = `Round ${roundsPlayed + 1} of ${totalRounds}`;
+        }
+    }
 
-    // Functions playRound, computerSelection, resetGame goes here
+    // Function to select a random choice for the computer
+    function computerSelection() {
+        const choices = ['rock', 'paper', 'scissors'];
+        const randomNumber = Math.floor(Math.random() * 3);
+        return choices[randomNumber];
+    }
+
+    // Function to update the scores on the scoreboard
+    function updateScores() {
+        document.querySelector('.p-score').textContent = playerScore;
+        document.querySelector('.c-score').textContent = computerScore;
+    }
+
+    // Function to display the result of a round
+    function displayResult(result) {
+        document.querySelector('.result').textContent = result;
+    }
+
+    // Function to end the game and display the final result
+    function endGame() {
+        let resultMessage = "";
+        if (playerScore > computerScore) {
+            resultMessage = `Congratulations, ${playerName}! You win the game.`;
+        } else if (playerScore < computerScore) {
+            resultMessage = `Better luck next time, ${playerName}. Computer wins the game.`;
+        } else {
+            resultMessage = `It's a tie! The game ends in a draw.`;
+        }
+        document.querySelector('.result').textContent = resultMessage;
+        // Show reset button
+        document.querySelector('.reset-button').style.display = 'block';
+    }
+
+    // Function to reset the game
+    function resetGame() {
+        playerName = "";
+        playerScore = 0;
+        computerScore = 0;
+        roundsPlayed = 0;
+        document.getElementById("username").value = ""; // Clear input field
+        document.querySelector('.user-info').style.display = 'block'; // Show user-info section
+        document.querySelector('.scoreboard').style.display = 'none'; // Hide scoreboard
+        document.querySelector('.choices').style.display = 'none'; // Hide choices
+        document.querySelector('.result').textContent = ""; // Clear result
+        document.querySelector('.reset-button').style.display = 'none'; // Hide reset button
+        document.getElementById('start-game').style.display = 'block'; // Show start game button
+    }
+
+    // Event listener for reset button
+    document.querySelector('.reset-button').addEventListener('click', resetGame);
 });
